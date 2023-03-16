@@ -1,3 +1,3 @@
 function cf_save(filename, s)
-    audiowrite(filename, s{1}, s{2});
+    audiowrite(filename, s.y, s.Fs);
 end

@@ -4,5 +4,5 @@ function cf_play(s, v)
         v = 100;
     end
 
-    sound(s{1} * (v / 100), s{2});
+    sound(s.y * (v / 100), s.Fs);
 end

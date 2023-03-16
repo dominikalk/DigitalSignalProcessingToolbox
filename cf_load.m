@@ -1,4 +1,4 @@
 function s = cf_load(filename)
     [y, Fs] = audioread(filename);
-    s = {y, Fs};
+    s = struct("y", y, "Fs", Fs);
 end
