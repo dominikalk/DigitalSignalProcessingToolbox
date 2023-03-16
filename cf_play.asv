@@ -1,0 +1,24 @@
+function is_scalar = check_scalar(v)
+    [x, y] = size(v);
+    if x > 1 || y > 1
+        is_scalar = 0;
+    else
+        is_scalar = 1;
+    end
+end
+
+function cf_play(s, v)
+% TODO: add checks for volume bounds
+    if nargin < 2
+        v = 100;
+    end
+
+    
+    if size(v) > 1 || ~isnumeric(v)
+        error('Volume must be a number, not %s.', class(v));
+    elseif v < 0 || v > 100
+        error('Volume must be between 0 and 100.');
+    end
+
+    sound(s.y * (v / 100), s.Fs);
+end

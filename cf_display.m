@@ -1,6 +1,16 @@
 function cf_display(s, domain)
+
+    % Default domain to t (time) if not provided
     if nargin < 2
         domain = "t";
+    end
+
+    % Error check to make sure domain is a character and equal
+    % to either 't' of 'f'
+    if ~ischar(domain)
+        error("Domain must be of type char, not %s.", class(domain));
+    elseif domain ~= "t" && domain ~= "f"
+        error("Domain must be char 't' (Time) or 'f' (Frequency).");
     end
 
     if domain == "t"

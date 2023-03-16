@@ -1,8 +1,17 @@
 function cf_play(s, v)
-% TODO: add checks for volume bounds
+
+    % Default volume to 100 if not provided
     if nargin < 2
         v = 100;
     end
+    
+    % Error checks to ensure v is a scalar number between 0 and 100;
+    if ~isscalar(v) || ~isnumeric(v)
+        error('Volume must be a scalar number.');
+    elseif v < 0 || v > 100
+        error('Volume must be between 0 and 100.');
+    end
 
+    % Play sound at volume v
     sound(s.y * (v / 100), s.Fs);
 end
