@@ -15,7 +15,6 @@ function cf_display(s, domain)
 
     figure();
     if domain == 't'
-        % Logic to plot signal in time domain
         N = size(s.y,1);
         x = (0:N-1)/s.Fs;
         y = s.y;
@@ -26,18 +25,21 @@ function cf_display(s, domain)
         xlabel('Time / s');
         ylabel('Amplitude');
     else
-        % Logic to plot signal in frequency domain
         y = s.y;
-        N = size(y, 1);
+        N = size(y, )
         if mod(N, 2) ~= 0 
             y = [y;0]; 
             N = N + 1; 
         end
         Y = fftshift(fft(y));
         x = [-N/2:N/2-1]*s.Fs/N;
+
+        size(x)
+        size(abs(Y))
+
         plot(x, abs(Y));
 
-        ylabel('Magnitude');
+        % ylabel('Amplitude');
         title('Plot of Signal in the Frequency domain');
         xlabel('Frequency / Hz');
     end 
