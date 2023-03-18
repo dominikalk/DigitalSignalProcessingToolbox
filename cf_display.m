@@ -5,16 +5,15 @@ function cf_display(s, domain)
         domain = 't';
     end
 
-    % Error check to make sure domain is a character and equal
-    % to either 't' of 'f'
-    if ~ischar(domain)
-        error("Domain must be of type char, not %s.", class(domain));
-    elseif domain ~= 't' && domain ~= 'f'
-        error("Domain must be char 't' (Time) or 'f' (Frequency).");
+    %Error Check
+    if ~(ischar(domain) || isstring(domain))
+        error(['Unsupported Domain Class Type: ', class(domain)]);
+    elseif((strcmp(domain,'t') ~= 1) && (strcmp(domain,'f') ~= 1))
+        error(['Unsupported Domain Type: ', convertStringsToChars(domain)]);
     end
 
     figure();
-    if domain == 't'
+    if strcmp(domain,'t')
         % Logic to plot signal in time domain
         N = size(s.y,1);
         x = (0:N-1)/s.Fs;
