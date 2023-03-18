@@ -21,10 +21,13 @@ function m = cf_segment(s, thresh_type, thresh)
     s = rgb2gray(s);
 
     if strcmp(thresh_type,'Thresh_Fixed') && nargin < 3
+        % Ref: 5th Lecture (27/2)
         thresh = graythresh(s);
     elseif strcmp(thresh_type,'Thresh_Adapt')
+        % Ref: 5th Lecture (27/2)
         thresh = adaptthresh(s);
     end
 
+    % Ref: 5th Lecture (27/2)
     m = imbinarize(s, thresh);
 end

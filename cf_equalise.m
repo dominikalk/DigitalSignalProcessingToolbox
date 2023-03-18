@@ -14,19 +14,21 @@ function ss = cf_equalise(s, b)
     Q = 3;
 
     % Apply Base_Shelf filter to lowest band
-    % Shelving filter by Jeff Tackett from https://uk.mathworks.com/matlabcentral/fileexchange/16568-bass-treble-shelving-filter
+    % Ref: https://uk.mathworks.com/matlabcentral/fileexchange/16568-bass-treble-shelving-filter
+    % Ref: 4th Lecture (20/2)
     [c, a] = shelving(b(1), bf(1), Fs, Q, 'Base_Shelf');
     y = filter(c, a, y);
 
     % Apply peaking filter for middle bands
-    % Peaking filter by Jeff Tackett from https://uk.mathworks.com/matlabcentral/fileexchange/16567-peaking-notch-iir-filter
+    % Ref: https://uk.mathworks.com/matlabcentral/fileexchange/16567-peaking-notch-iir-filter
     for i = 2:10
         [c, a] = peaking(b(i), bf(i), Q, Fs);
         y = filter(c, a, y);
     end
 
     % Apply Base_Treble filter to highest band
-    % Shelving filter by Jeff Tackett from https://uk.mathworks.com/matlabcentral/fileexchange/16568-bass-treble-shelving-filter
+    % Ref: https://uk.mathworks.com/matlabcentral/fileexchange/16568-bass-treble-shelving-filter
+    % Ref: 4th Lecture (20/2)
     [c, a] = shelving(b(11), bf(11), Fs, Q, 'Treble_Shelf');
     y = filter(c, a, y);
 

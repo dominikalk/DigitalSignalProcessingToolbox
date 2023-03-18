@@ -13,5 +13,6 @@ function cf_play(s, v)
     end
 
     % Play sound at volume v
+    % Ref: 4th Lecture (20/2)
     sound(s.y * (v / 100), s.Fs);
 end
