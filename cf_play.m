@@ -7,9 +7,9 @@ function cf_play(s, v)
     
     % Error checks to ensure v is a scalar number between 0 and 100;
     if ~isscalar(v) || ~isnumeric(v)
-        error('Volume must be a scalar number.');
+        error('v must be a scalar number.');
     elseif v < 0 || v > 100
-        error('Volume must be between 0 and 100.');
+        error('v must be between 0 and 100.');
     end
 
     % Play sound at volume v

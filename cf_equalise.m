@@ -1,6 +1,12 @@
 function ss = cf_equalise(s, b)
 
-    % add check to make sure b is correct length
+    % Error check to ensure b is 1D vector of 11 numeric elements
+    err = size(b);
+    if err(1) ~= 1 || err(2) ~= 11
+        error('b must be a 1D vector with 11 elements.');
+    elseif ~isnumeric(b)
+        error('All elements of b must be numeric.');
+    end
 
     bf = [16, 31.5, 63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
 
@@ -20,7 +26,7 @@ function ss = cf_equalise(s, b)
         y = filter(c, a, y);
     end
 
-    % Apply Base_Treble filter to lowest band
+    % Apply Base_Treble filter to highest band
     % Shelving filter from https://uk.mathworks.com/matlabcentral/fileexchange/16568-bass-treble-shelving-filter
     [c, a] = shelving(b(11), bf(11), Fs, Q, 'Treble_Shelf');
     y = filter(c, a, y);
