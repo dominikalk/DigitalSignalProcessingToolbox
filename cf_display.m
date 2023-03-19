@@ -36,9 +36,9 @@ function cf_display(s, domain)
         x = [-N/2:N/2-1]*s.Fs/N;
         plot(x, abs(Y));
 
-        ylabel('Magnitude');
         title('Plot of Signal in the Frequency domain');
         xlabel('Frequency / Hz');
+        ylabel('Magnitude');
     end 
 
     % Check for multiple signals and subplot
