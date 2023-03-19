@@ -1,4 +1,4 @@
-function s = cf_ext_a2(s, noise_filter, noise)
+function ss = cf_ext_a2(s, noise_filter, noise)
 
     % Default inputs if not provided
     if nargin < 2
@@ -28,7 +28,7 @@ function s = cf_ext_a2(s, noise_filter, noise)
         sae = removenoise(sae, noise_filter, noise);
     end
 
-    s = sae;
+    ss = sae;
 end
 
 function s = removenoise(s, noise_filter, noise)

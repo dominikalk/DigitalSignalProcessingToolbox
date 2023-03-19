@@ -1,4 +1,37 @@
 function ss = cf_ext_a(s, varargin)
+    % Generates an audio signal with the Wah Wah effect applied to it given 
+    % different input parameters. It implements a BandPass filter with a
+    % narrow pass band using a wave that oscillates up and down thespectrum.
+    % Takes an input of a wave s as a structure with fields y and Fs.
+    %
+    % Usage:        ss = cf_ext_a(s);
+    %               ss = cf_ext_a(s, PARAM1, VAL1, PARAM2, VAL2...);
+    %
+    % Optional Parameters:
+    %
+    % 'wave_type'   The type of wave to be applied as part of the Wah Wah
+    %               effect onto the input signal. Possible types are:
+    %               'Wave_Triangle','Wave_Sawtooth','Wave_Square','Wave_Sin'.
+    %
+    %               Default: 'Wave_Triangle'.
+    % 
+    % 'Fw'          Wah frequency: how many Hz per secondare cycled through.
+    %
+    %               Default: 1.
+    %
+    % 'damp'        Damping factor: the lower the smaller the pass band.
+    %
+    %               Default: 0.05.
+    %
+    % 'minf'        Min centre cutoff frequency of variable bandpass filter.
+    %
+    %               Default: 300.
+    %
+    % 'maxf'        Max centre cutoff frequency of variable bandpass filter.
+    %
+    %               Default: 3000.
+    %
+    % Author:    Dominik Alkhovik
 
     % Input Parsing to allow for multiple optional parameters
     wave_type = 'Wave_Triangle';
@@ -29,6 +62,10 @@ function ss = cf_ext_a(s, varargin)
     % Deconstruct structure for ease of reading
     Fs = s.Fs;
     x = s.y;
+
+    % Reference for Code below on Wah Wah effect
+    % live4.zip -> four3.mlx
+    % code was taken and manipulated to add functionality
 
     % Create wave
     Cf = (maxf + minf)/2; % Centre Frequency
@@ -72,15 +109,6 @@ function ss = cf_ext_a(s, varargin)
     % Normalise
     maxyb = max(abs(yb));
     yb = yb/maxyb;
-    
-    % Plot
-    figure()
-    hold on
-    plot(x,'r');
-    plot(yb,'g');
-    title('Wah-wah and original Signal (Blue - Wah-Wah, Red - original)');
-    
-    sound(yb, Fs);
 
     ss = struct("y", yb, "Fs", Fs);
 end
