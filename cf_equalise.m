@@ -6,7 +6,8 @@ function ss = cf_equalise(s, b)
     % (referenced where used) which are IIR filters. For each frequency 
     % band, either a shelving IIR filter is applied (lowest and highest 
     % bands) or a peaking IIR filter is applied (middle bands). The 
-    % equalised signal is returned in the same format as the input.
+    % equalised signal is normalised and returned in the same format as 
+    % the input.
     %
     % Usage:     ss = cf_equalise(s, b);
     %
@@ -50,6 +51,10 @@ function ss = cf_equalise(s, b)
     % Ref: 4th Lecture (20/2)
     [c, a] = shelving(b(11), bf(11), Fs, Q, 'Treble_Shelf');
     y = filter(c, a, y);
+
+    % Normalise
+    maxy = max(abs(y));
+    y = y/maxy;
 
     ss = struct("y", y, "Fs", Fs);
 end
