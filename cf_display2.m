@@ -1,4 +1,17 @@
 function cf_display2(s, domain)
+    % 
+    % Given an image, it will display the image in either spacial or
+    % frequency domain.
+    %
+    % Usage:     cf_display2(s, domain);
+    %
+    %            s: image as an MxN or MxNx3 array.
+    %            domain: A character string defining the domain the image
+    %               should be displayed in. 
+    %               Choices are: 's' (spacial) or 'f' (frequency).
+    %               Default: 's'.
+    %
+    % Author:   Dominik Alkhovik
 
     % Default domain to s (spacial) if not provided
     if nargin < 2
@@ -12,6 +25,7 @@ function cf_display2(s, domain)
         error(['Unsupported Domain Type: ', convertStringsToChars(domain)]);
     end
 
+    % Display image in spacial or frequency domain depending on input
     figure();
     if strcmp(domain,'s')
         imshow(s);

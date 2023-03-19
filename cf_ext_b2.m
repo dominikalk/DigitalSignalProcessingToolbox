@@ -9,14 +9,12 @@ function ss = cf_ext_b2(s)
     % colours. These are then used to create 4 binary masks which are in
     % turn used in combination to create the colours on each of the r, g, 
     % and b matrices of the 4 tiles. These r, g, and b matrices are then
-    % concatonated to create the final image.
-    %
-    % Requires an image loaded with cf_load_2
-    % Returns an image that can be displayed with cf_display2
+    % concatonated to create the final image which is returned as an MxNx3
+    % array.
     %
     % Usage:     ss = cf_ext_b2(s);
     %
-    %            s: image loaded with cf_load_2
+    %            s: image as an MxN or MxNx3 array.
     %
     % Author:    Dominik Alkhovik
 

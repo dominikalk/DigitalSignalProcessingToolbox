@@ -1,4 +1,16 @@
 function cf_play(s, v)
+    % 
+    % Given an audio signal, it will play the audio at volume v, where v is
+    % the percentage of the volume.
+    %
+    % Usage:     cf_play(s, v);
+    %
+    %            s: The signal as a structure with fields y and Fs
+    %            v: The volume of the signal as a percentage.
+    %               Default: 100.
+    %
+    % Author:   Dominik Alkhovik
+
 
     % Default volume to 100 if not provided
     if nargin < 2

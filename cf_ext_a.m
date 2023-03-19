@@ -1,4 +1,5 @@
 function ss = cf_ext_a(s, varargin)
+    % 
     % Generates an audio signal with the Wah Wah effect applied to it given 
     % different input parameters. It implements a BandPass filter with a
     % narrow pass band using a wave that oscillates up and down thespectrum.
@@ -33,7 +34,7 @@ function ss = cf_ext_a(s, varargin)
     %
     % Author:    Dominik Alkhovik
 
-    % Input Parsing to allow for multiple optional parameters
+    % Define default values for input parsing
     wave_type = 'Wave_Triangle';
     expected_wave_types = {'Wave_Triangle','Wave_Sawtooth','Wave_Square','Wave_Sin'};
     Fw = 1; % wah frequency, how many Hz per secondare cycled through
@@ -41,6 +42,7 @@ function ss = cf_ext_a(s, varargin)
     minf=300; % Min and max centre cutoff frequency of variable bandpass filter
     maxf=3000;
 
+    % Input Parsing to allow for multiple optional parameters
     p = inputParser; % Ref: https://uk.mathworks.com/help/matlab/ref/inputparser.html
     validScalarPosNum = @(x) isnumeric(x) && isscalar(x) && (x > 0);
     addRequired(p,'s');
@@ -57,9 +59,9 @@ function ss = cf_ext_a(s, varargin)
     Fw = p.Results.Fw;
     damp = p.Results.damp;
     minf = p.Results.minf;
-    maxf  =p.Results.maxf;
+    maxf = p.Results.maxf;
 
-    % Deconstruct structure for ease of reading
+    % Deconstruct structure for readability
     Fs = s.Fs;
     x = s.y;
 
@@ -80,10 +82,6 @@ function ss = cf_ext_a(s, varargin)
     else
         Fc = Cf + offset * sin(Wx);
     end
-    
-    figure();
-    plot(Fc);
-    title('Modulating Frequency Plot');
 
     % Difference equation coefficients
     F1 = 2*sin((pi*Fc(1))/Fs);  % must be recalculated each time Fc changes
@@ -110,5 +108,6 @@ function ss = cf_ext_a(s, varargin)
     maxyb = max(abs(yb));
     yb = yb/maxyb;
 
+    % Create structure to be returned
     ss = struct("y", yb, "Fs", Fs);
 end

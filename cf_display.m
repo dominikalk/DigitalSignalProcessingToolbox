@@ -1,4 +1,17 @@
 function cf_display(s, domain)
+    % 
+    % Given an audio signal as structure s with fields y and Fs, it will 
+    % display the signal on a graph in the time or frequency domain.
+    %
+    % Usage:     cf_display(s, domain);
+    %
+    %            s: The signal as a structure with fields y and Fs
+    %            domain: A character string defining the domain the graph
+    %               should be plotted in. 
+    %               Choices are: 't' (time) or 'f' (frequency).
+    %               Default: 't'.
+    %
+    % Author:   Dominik Alkhovik
 
     % Default domain to t (time) if not provided
     if nargin < 2
@@ -12,6 +25,7 @@ function cf_display(s, domain)
         error(['Unsupported Domain Type: ', convertStringsToChars(domain)]); % Ref: https://uk.mathworks.com/help/matlab/ref/convertstringstochars.html
     end
 
+    % Plot signal in time of frequency domain depending on input
     figure();
     if strcmp(domain,'t')
         % Logic to plot signal in time domain
@@ -26,6 +40,7 @@ function cf_display(s, domain)
         ylabel('Amplitude');
     else
         % Logic to plot signal in frequency domain
+        % Ref: 4th Lecture (20/2)
         y = s.y;
         N = size(y, 1);
         if mod(N, 2) ~= 0 
@@ -40,6 +55,4 @@ function cf_display(s, domain)
         xlabel('Frequency / Hz');
         ylabel('Magnitude');
     end 
-
-    % Check for multiple signals and subplot
 end
