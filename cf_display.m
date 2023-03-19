@@ -8,8 +8,8 @@ function cf_display(s, domain)
     %Error Check
     if ~(ischar(domain) || isstring(domain))
         error(['Unsupported Domain Class Type: ', class(domain)]);
-    elseif((strcmp(domain,'t') ~= 1) && (strcmp(domain,'f') ~= 1))
-        error(['Unsupported Domain Type: ', convertStringsToChars(domain)]);
+    elseif((strcmp(domain,'t') ~= 1) && (strcmp(domain,'f') ~= 1)) % Ref: https://uk.mathworks.com/help/matlab/ref/strcmp.html
+        error(['Unsupported Domain Type: ', convertStringsToChars(domain)]); % Ref: https://uk.mathworks.com/help/matlab/ref/convertstringstochars.html
     end
 
     figure();

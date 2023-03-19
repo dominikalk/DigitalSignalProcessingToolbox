@@ -1,12 +1,12 @@
 function s = cf_ext_b2(s)    
 
     % Format s to make grayscale, remove noise, and increase contrast
-    s = rgb2gray(s);
-    s = wiener2(s, [5 5]);
-    s = adapthisteq(s);
+    s = rgb2gray(s); % Ref: 5th Lecture (27/2)
+    s = wiener2(s, [5 5]); % Ref: https://uk.mathworks.com/help/images/ref/wiener2.html
+    s = adapthisteq(s); % Ref: 5th Lecture (27/2)
 
     % Generate threshold levels
-    tm = cast(multithresh(s, 3), 'double') ./ 256;
+    tm = cast(multithresh(s, 3), 'double') ./ 256; % Ref: https://uk.mathworks.com/help/images/ref/multithresh.html
     [Y, X] = size(s);
 
     % Initialise binary masks
@@ -45,5 +45,5 @@ function s = cf_ext_b2(s)
     sb(Y+1:Y*2, X+1:X*2) = m3 + m1 + m2 .* pink.b;
 
     % Concatonate RGB matrices
-    s = cat(3, sr, sg, sb);
+    s = cat(3, sr, sg, sb); % Ref: https://uk.mathworks.com/matlabcentral/answers/285410-free-hand-drawing-on-photo-matlab
 end

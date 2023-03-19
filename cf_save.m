@@ -1,5 +1,4 @@
 function cf_save(filename, s)
     
-    % Ref: https://uk.mathworks.com/help/matlab/ref/audiowrite.html 
-    audiowrite(filename, s.y, s.Fs);
+    audiowrite(filename, s.y, s.Fs); % Ref: https://uk.mathworks.com/help/matlab/ref/audiowrite.html 
 end

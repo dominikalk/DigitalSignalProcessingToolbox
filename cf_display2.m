@@ -16,6 +16,7 @@ function cf_display2(s, domain)
     if strcmp(domain,'s')
         imshow(s);
     else
+        % Ref: https://uk.mathworks.com/matlabcentral/answers/261707-how-to-convert-an-image-to-frequency-domain-in-matlab
         s = rgb2gray(s);
         f=fft2(s);
         S=fftshift(log(1+abs(f)));

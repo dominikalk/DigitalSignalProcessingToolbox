@@ -18,13 +18,11 @@ function s = cf_ext_a2(s, noise_filter, noise)
     end
 
     % Convert image to grayscale
-    % Ref: 5th Lecture (27/2) Video: rgb2gray
-    s = rgb2gray(s);
+    s = rgb2gray(s); % Ref: 5th Lecture (27/2) Video: rgb2gray
     % First pass of removing noise
     sn = removenoise(s, noise_filter, noise);
     % Increase contrast of the image
-    % Ref: 5th Lecture (27/2) Video: adapthisteq
-    sae = adapthisteq(sn);
+    sae = adapthisteq(sn); % Ref: 5th Lecture (27/2) Video: adapthisteq
     % Second pass of removing noise
     if ~strcmp(noise_filter,'Noise_Avg')
         sae = removenoise(sae, noise_filter, noise);
