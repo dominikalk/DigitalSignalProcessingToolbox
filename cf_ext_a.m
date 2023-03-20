@@ -2,7 +2,7 @@ function ss = cf_ext_a(s, varargin)
     % 
     % Generates an audio signal with the Wah Wah effect applied to it given 
     % different input parameters. It implements a BandPass filter with a
-    % narrow pass band using a wave that oscillates up and down thespectrum.
+    % narrow pass band using a wave that oscillates up and down the spectrum.
     % Takes an input of a wave s as a structure with fields y and Fs.
     %
     % Usage:        ss = cf_ext_a(s);
@@ -69,7 +69,7 @@ function ss = cf_ext_a(s, varargin)
     % live4.zip -> four3.mlx
     % code was taken and manipulated to add functionality
 
-    % Create wave
+    % Create wave (Fc) depending on wave_type
     Cf = (maxf + minf)/2; % Centre Frequency
     offset = maxf - Cf; % Offset
     Wx = 2*pi*(1:length(x))*Fw/Fs; % Wave X - Value to input into wave function

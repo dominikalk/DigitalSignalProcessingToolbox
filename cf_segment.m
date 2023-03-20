@@ -5,7 +5,8 @@ function m = cf_segment(s, thresh_type, thresh)
     % labelling foreground pixels 1 and background pixels 0. m is then
     % returned.
     %
-    % Usage:     m = cf_segment(s, thresh_type, thresh)
+    % Usage:     m = cf_segment(s)
+    %            m = cf_segment(s, thresh_type, thresh)
     %
     %            s: image as an MxN or MxNx3 array.
     %            thresh_type: A character string defining the type of
@@ -20,8 +21,6 @@ function m = cf_segment(s, thresh_type, thresh)
     %               Default: generated with "graythresh"
     %
     % Author:   Dominik Alkhovik
-
-    % Thresh_Adapt, Thresh_Fixed
 
     % Default thresh_type to Thresh_Fixed if not provided
     if nargin < 2

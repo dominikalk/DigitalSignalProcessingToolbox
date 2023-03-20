@@ -11,5 +11,6 @@ function cf_save2(filename, s)
     %
     % Author:   Dominik Alkhovik
 
+    % Write to file with name equal to filename and content s
     imwrite(s, filename); % Ref: https://uk.mathworks.com/help/matlab/ref/imwrite.html
 end

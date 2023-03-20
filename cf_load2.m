@@ -11,5 +11,6 @@ function s = cf_load2(filename)
     %
     % Author:   Dominik Alkhovik
 
+    % Read file with name equal to file name and return as array
     s = imread(filename); % Ref: 5th Lecture (27/2)
 end

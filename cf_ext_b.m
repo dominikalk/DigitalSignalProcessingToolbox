@@ -10,7 +10,8 @@ function ss = cf_ext_b(s, f, b, Q)
     % 1 band is given). The equalised signal is normalised and returned in 
     % the same format as the input.
     %
-    % Usage:     ss = cf_ext_b(s, f, b, Q);
+    % Usage:     ss = cf_ext_b(s, f, b);
+    %            ss = cf_ext_b(s, f, b, Q);
     %
     %            s: The signal as a structure with fields y and Fs
     %            f: 1D vector with 1xN numeric elements that correspond to
@@ -43,7 +44,7 @@ function ss = cf_ext_b(s, f, b, Q)
     % Apply peaking filter if only 1 frequency, 2 shelving filters if 2
     % frequencies, and a combination if 3 or greater.
     if size(f, 2) == 1
-        % Apply peaking filter for middle bands
+        % Apply peaking filter for sole band
         % Ref: https://uk.mathworks.com/matlabcentral/fileexchange/16567-peaking-notch-iir-filter
         [c, a] = peaking(b(1), f(1), Q, Fs);
         y = filter(c, a, y);

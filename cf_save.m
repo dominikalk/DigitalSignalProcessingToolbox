@@ -11,5 +11,6 @@ function cf_save(filename, s)
     %
     % Author:   Dominik Alkhovik
     
+    % Write to a file with name equal to filename and content of s
     audiowrite(filename, s.y, s.Fs); % Ref: https://uk.mathworks.com/help/matlab/ref/audiowrite.html 
 end

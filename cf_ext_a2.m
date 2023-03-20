@@ -9,13 +9,14 @@ function ss = cf_ext_a2(s, noise_filter, noise)
     % has a choice between 3 different types of noise reduction, as well as
     % the level of noise reduction. The enhanced image is returned.
     %
-    % Usage:     ss = cf_ext_a2(s, noise_filter, noise);
+    % Usage:     ss = cf_ext_a2(s);
+    %            ss = cf_ext_a2(s, noise_filter, noise);
     %
     %            s: image as an MxN or MxNx3 array.
     %            noise_filter: A character string defining the type of
-    %            noise reduction filter that should be performed on the image.
+    %               noise reduction filter that should be performed on the image.
     %               Choices are: 'Noise_Adp' (Adaptive), 'Noise_Avg' 
-    %               (Average), or 'Noise_Med' (Median).
+    %                   (Average), or 'Noise_Med' (Median).
     %               Default: 'Noise_Adp'.
     %            noise: Level of noise reduction.
     %               Default: 2.
@@ -54,12 +55,15 @@ function ss = cf_ext_a2(s, noise_filter, noise)
     sae = adapthisteq(sn); % Ref: 5th Lecture (27/2) Video: adapthisteq
     % Second pass of removing noise
     if ~strcmp(noise_filter,'Noise_Avg')
+        % Ignored for Noise_Avg as 2nd pass of filtering would make the
+        % image blank
         sae = removenoise(sae, noise_filter, noise);
     end
 
     ss = sae;
 end
 
+% Reused code as noise removal is done twice
 function s = removenoise(s, noise_filter, noise)
     if strcmp(noise_filter,'Noise_Adp')
         % Ref: https://uk.mathworks.com/help/images/ref/wiener2.html

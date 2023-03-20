@@ -3,7 +3,8 @@ function cf_display(s, domain)
     % Given an audio signal as structure s with fields y and Fs, it will 
     % display the signal on a graph in the time or frequency domain.
     %
-    % Usage:     cf_display(s, domain);
+    % Usage:     cf_display(s);
+    %            cf_display(s, domain);
     %
     %            s: The signal as a structure with fields y and Fs
     %            domain: A character string defining the domain the graph
@@ -43,10 +44,12 @@ function cf_display(s, domain)
         % Ref: 4th Lecture (20/2)
         y = s.y;
         N = size(y, 1);
+        % Add 0 to end if odd number of amplitudes
         if mod(N, 2) ~= 0 
             y = [y;0]; 
             N = N + 1; 
         end
+        % Get magnitude of frequencies
         Y = fftshift(fft(y));
         x = [-N/2:N/2-1]*s.Fs/N;
         plot(x, abs(Y));
