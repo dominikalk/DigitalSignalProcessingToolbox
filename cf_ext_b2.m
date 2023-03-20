@@ -1,7 +1,8 @@
 function ss = cf_ext_b2(s, noise) 
+    % 
     % Generates an image in the style of the Marilyn Monroe 4 multicoloured
     % tiles (2x2 tiled image of the input image where each tile shows the 
-    % segmented image with a different iteration of 3 colours and black). 
+    % segmented image with a different iteration of 4 colours and black). 
     % The function removes noise and increases the contrast of the input
     % image to ensure the values worked with will vary enough to show the
     % multiple colours, whilst not being noisy. It then generates 3
